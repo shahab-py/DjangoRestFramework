@@ -5,6 +5,7 @@ from .models import Person, Question, Answer
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework import status
 from permissions import IsOwnerOrReadOnly
+from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 
 
 
@@ -18,6 +19,8 @@ class Home(APIView):
 
 
 class QuestionListView(APIView):
+
+    throttle_classes = [UserRateThrottle, AnonRateThrottle]
 
     def get(self, request):
         questions = Question.objects.all()
