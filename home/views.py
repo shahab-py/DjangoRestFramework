@@ -11,6 +11,7 @@ from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 
 class Home(APIView):
     permission_classes = [AllowAny,]
+    serializer_class = QuestionSerializer
     def get(self, request):
         persons = Person.objects.all()
         ser_data = PersonSerializer(instance=persons, many=True)
@@ -19,6 +20,10 @@ class Home(APIView):
 
 
 class QuestionListView(APIView):
+
+    """
+        LIST VIEW FOR QUESTIONS
+    """
 
     throttle_classes = [UserRateThrottle, AnonRateThrottle]
 
@@ -29,7 +34,12 @@ class QuestionListView(APIView):
     
 
 class QuestionCreateView(APIView):
+
+    """
+        CREATE QUESTIONS
+    """
     permission_classes = [IsAuthenticated, ]
+    serializer_class = QuestionSerializer
 
     def post(self, request):
         srz_data = QuestionSerializer(data=request.data)
@@ -40,7 +50,13 @@ class QuestionCreateView(APIView):
     
 
 class QuestionUpdateView(APIView):
+
+    """
+        UPDATE QUESTIONS 
+    """
+
     permission_classes = [IsOwnerOrReadOnly, ]
+    serializer_class = QuestionSerializer
     
     def put(self, request, pk):
         question = Question.objects.get(pk=pk)
@@ -53,7 +69,12 @@ class QuestionUpdateView(APIView):
 
 
 class QuestionDeleteView(APIView):
+
+    """
+        DELETE QUESTIONS
+    """
     permission_classes = [IsOwnerOrReadOnly, ]
+    serializer_class = QuestionSerializer
 
     def delete(self, request, pk):
         question = Question.objects.get(pk = pk)
