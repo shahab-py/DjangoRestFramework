@@ -154,14 +154,14 @@ REST_FRAMEWORK = {
     
     'DEFAULT_SCHEMA_CLASS':'drf_spectacular.openapi.AutoSchema',
 
-    'SPECTACULAR_SETTINGS':{
+   
+}
+
+SPECTACULAR_SETTINGS = {
     'TITLE':'shop rest',
     'DESCRIPTION':'description',
     'VERSION':'0.26.2', # default:'1.0.0' 
     }
-
-}
-
 
 
 
