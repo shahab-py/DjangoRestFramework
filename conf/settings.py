@@ -151,6 +151,12 @@ REST_FRAMEWORK = {
         'user':'10/hour',
     },
 
+    'DEFAULT_RENDERER_CLASSES':[
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.AdminRenderer'
+
+    ],
+
     
     'DEFAULT_SCHEMA_CLASS':'drf_spectacular.openapi.AutoSchema',
 
